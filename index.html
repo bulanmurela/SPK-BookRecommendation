@@ -20,11 +20,19 @@
     <label for="pages">Maksimal Jumlah Halaman:</label>
     <input type="number" id="pages" required>
 
+    <label for="language">Bahasa:</label>
+    <select id="language">
+      <option value="Indonesia">Indonesia</option>
+      <option value="Inggris">Inggris</option>
+      <!-- Tambahkan opsi lain jika ada -->
+    </select>
+
     <button type="submit">Dapatkan Rekomendasi</button>
   </form>
 
   <div id="result"></div>
 
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
