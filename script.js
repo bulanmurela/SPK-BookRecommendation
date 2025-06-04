@@ -48,11 +48,12 @@ document.getElementById('recommendationForm').addEventListener('submit', functio
   setTimeout(() => {
     // Ambil nilai preferensi dari form
     const genre = document.getElementById('genre').value;
-    const maxPages = parseInt(document.getElementById('pages').value);
+    const minPages = parseInt(document.getElementById('minPages').value);
+    const maxPages = parseInt(document.getElementById('maxPages').value);
     const minRating = parseFloat(document.getElementById('rating').value);
     const language = document.getElementById('language').value;
 
-    const preferred = { genre, maxPages, minRating, language };
+    const preferred = { genre, minPages, maxPages, minRating, language };
 
     // Fungsi normalisasi
     function normalize(values, value) {
@@ -66,7 +67,11 @@ document.getElementById('recommendationForm').addEventListener('submit', functio
 
     // Proses scoring dan filter sesuai preferensi
     const scoredBooks = books
-      .filter(b => b.Rating >= preferred.minRating) // filter minimal rating
+      .filter(b =>
+        b.Rating >= preferred.minRating &&
+        b.Pages >= preferred.minPages &&
+        b.Pages <= preferred.maxPages
+      ) // filter minimal rating
       .map(b => {
         const genreScore = b.Genre.toLowerCase() === preferred.genre.toLowerCase() ? 100 : 0;
         const pagesScore = b.Pages <= preferred.maxPages 
