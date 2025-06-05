@@ -66,8 +66,7 @@ document.getElementById('recommendationForm').addEventListener('submit', functio
 
     // Proses scoring dan filter sesuai preferensi
     const scoredBooks = books
-      .filter(b =>
-        b.Rating >= preferred.minRating
+      .filter(b => b.Rating >= preferred.minRating)
       .map(b => {
         const genreScore = b.Genre.toLowerCase() === preferred.genre.toLowerCase() ? 100 : 0;
         const pagesScore = b.Pages <= preferred.maxPages 
